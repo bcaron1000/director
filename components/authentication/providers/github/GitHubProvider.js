@@ -7,7 +7,6 @@ import { useAuth } from 'libs/hooks/useAuth';
 import { GithubAuthProvider, signInWithPopup} from '@firebase/auth';
 
 import { ProviderButton } from "ui/buttons";
-
 import github from "./github.png";
 
 function GitHubProvider({ children, ...props }) {
