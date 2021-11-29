@@ -1,5 +1,8 @@
 import { AppBar } from "components/appbar"
 import { GoogleProvider } from "components/authentication/providers"
+import { GitHubProvider } from "components/authentication/providers"
+import { FaceBookProvider } from "components/authentication/providers"
+import { AppleProvider } from "components/authentication/providers"
 import { Title } from "ui/title"
 import { Spacer } from "ui/spacers"
 import {UserLogin} from "components/authentication/user-login"
@@ -15,8 +18,12 @@ function index (){
                     <Title>Account Login</Title>
                     </PageHeader>
                <PageBody>
-                   <GoogleProvider>With Google</GoogleProvider>
+                   <GoogleProvider style={{marginBottom:"1.5rem"}}>With Google</GoogleProvider>
+                   <GitHubProvider>With Github</GitHubProvider>
+                   <FaceBookProvider>With Facebook</FaceBookProvider>
+                   <AppleProvider>With Apple</AppleProvider>
                    <Spacer className="spacing" >OR</Spacer>
+                   
                    <UserLogin/>
                 </PageBody>             
                 <PageFooter>

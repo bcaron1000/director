@@ -6,14 +6,17 @@ function useAuth(){
     const [user, setUser] = useState(null)
 
     useEffect(()=>{
-        onAuthStateChanged(auth, (clientCredentials)=>{
+        // component mounts 
+        const authChange = onAuthStateChanged(auth, (clientCredentials)=>{
             if (clientCredentials){
                 setUser(clientCredentials)
             }else{
                 setUser(null)
             }
         })
-    })
+        return ()=> authChange()
+        //cleans up the function so it doesnt get stuck in a loop
+    }, [])
     return user
 }
 
