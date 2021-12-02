@@ -28,7 +28,7 @@ function GitHubProvider({ children, ...props }) {
   }
   
   return (
-    <ProviderButton  onClick={handleClick}>
+    <ProviderButton  onClick={handleClick}{...props}>
       <div>
         <Image
           src={github}

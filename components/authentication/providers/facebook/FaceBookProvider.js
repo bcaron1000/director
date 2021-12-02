@@ -9,7 +9,7 @@ import facebook from "./facebook.png";
 function FaceBookProvider({ children, ...props }) {
   
   return (
-    <ProviderButton>
+    <ProviderButton {...props}>
       <div>
         <Image
           src={facebook}

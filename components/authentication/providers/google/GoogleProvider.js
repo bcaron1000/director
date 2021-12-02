@@ -27,7 +27,7 @@ function GoogleProvider({ children,  ...props }) {
     router.push('/todo')
   }
   return (
-    <ProviderButton  onClick={handleClick}>
+    <ProviderButton  onClick={handleClick}{...props}>
       <div>
         <Image
           src={google}

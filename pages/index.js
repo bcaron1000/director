@@ -19,9 +19,9 @@ function index (){
                     </PageHeader>
                <PageBody>
                    <GoogleProvider style={{marginBottom:"1.5rem"}}>With Google</GoogleProvider>
-                   <GitHubProvider>With Github</GitHubProvider>
-                   <FaceBookProvider>With Facebook</FaceBookProvider>
-                   <AppleProvider>With Apple</AppleProvider>
+                   <GitHubProvider style={{marginBottom:"1.5rem"}}>With Github</GitHubProvider>
+                   <FaceBookProvider style={{marginBottom:"1.5rem"}}>With Facebook</FaceBookProvider>
+                   <AppleProvider style={{marginBottom:"1.5rem"}}>With Apple</AppleProvider>
                    <Spacer className="spacing" >OR</Spacer>
                    
                    <UserLogin/>
