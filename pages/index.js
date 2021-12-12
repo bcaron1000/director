@@ -1,40 +1,48 @@
-import { AppBar } from "components/appbar"
-import { GoogleProvider } from "components/authentication/providers"
-import { GitHubProvider } from "components/authentication/providers"
-import { FaceBookProvider } from "components/authentication/providers"
-import { AppleProvider } from "components/authentication/providers"
-import { Title } from "ui/title"
-import { Spacer } from "ui/spacers"
-import {UserLogin} from "components/authentication/user-login"
-import { Legal, HighLight } from "ui/legal"
-import {PageLayout, PageHeader, PageFooter, PageBody} from 'layouts/loginpage'
-function index (){
-    
-    return(
-        <>
-              <AppBar/>
-              <PageLayout>
-                    <PageHeader>
-                    <Title>Account Login</Title>
-                    </PageHeader>
-               <PageBody>
-                   <GoogleProvider style={{marginBottom:"1.5rem"}}>With Google</GoogleProvider>
-                   <GitHubProvider style={{marginBottom:"1.5rem"}}>With Github</GitHubProvider>
-                   <FaceBookProvider style={{marginBottom:"1.5rem"}}>With Facebook</FaceBookProvider>
-                   <AppleProvider style={{marginBottom:"1.5rem"}}>With Apple</AppleProvider>
-                   <Spacer className="spacing" >OR</Spacer>
-                   
-                   <UserLogin/>
-                </PageBody>             
-                <PageFooter>
-                        <Legal>Legal Stuff  <HighLight>terms and conditions</HighLight></Legal>
-                </PageFooter>
-
-              </PageLayout>
-        </>
-    )
-}
+import { useEffect, useState } from 'react'
+import { collection, getDocs} from 'firebase/firestore'
+import { db } from 'libs/firebase'
+import { AppBar } from 'components/appbar'
+import { async } from '@firebase/util'
+ 
 
  
+ function UserProfile({age, fullName, address, ...props}){
+     return(
+         <ul>
+             <li>{fullName}</li>
+             <li>{age}</li>
+             <li>{address.city}</li>
+         </ul>
+     )
+ }
+ 
+ function index(props){
+     // Read a single document from a collection.
+    const [users, setUsers] = useState(null)
+    const [output, setOutput] = useState('is working')
+
+    useEffect(()=>{
+        async function getFirebaseDoc(){
+            const ref = collection(db, 'users')
+            
+            const userSnapshot = await getDocs(ref)
+            let users = []
+            userSnapshot.forEach(doc=>{
+                // Object and array non mutating methods of state
+                setUsers(doc.data())
+                
+            })
+            
+        }
+        getFirebaseDoc()
+    }, [])
+
+
+    if(users){
+        return<div></div>
+    }else{
+        return<div>{output}</div>
+    }
+}
 
 export default index
